@@ -113,7 +113,7 @@ class RebuildCommitGraph extends TextBuiltin {
 	@Override
 	protected void run() throws Exception {
 		if (!really && !db.getAllRefs().isEmpty()) {
-			System.err.println(
+			err.println(
 				MessageFormat.format(CLIText.get().fatalThisProgramWillDestroyTheRepository
 					, db.getDirectory().getAbsolutePath(), REALLY));
 			throw die(CLIText.get().needApprovalToDestroyCurrentRepository);
@@ -289,7 +289,7 @@ class RebuildCommitGraph extends TextBuiltin {
 					rw.parseAny(id);
 				} catch (MissingObjectException mue) {
 					if (!Constants.TYPE_COMMIT.equals(type)) {
-						System.err.println(MessageFormat.format(CLIText.get().skippingObject, type, name));
+						err.println(MessageFormat.format(CLIText.get().skippingObject, type, name));
 						continue;
 					}
 					throw new MissingObjectException(id, type);
